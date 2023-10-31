@@ -33,11 +33,13 @@ include '../../templates/navbar.php';
       <th scope="col">Gaji Pokok</th>
       <th scope="col">Status Karyawan</th>
       <th scope="col">Bagian</th>
+      <th scope="col">Opsi</th>
     </tr>
   </thead>
   <tbody>
     <?php
     $no = 1;
+    $karyawan = $koneksi->query("SELECT * FROM karyawan ORDER BY nik DESC");
      $karyawan = $koneksi->query("SELECT * FROM karyawan");
             while ($data = $karyawan->fetch_array()){
 
@@ -50,6 +52,10 @@ include '../../templates/navbar.php';
         <td><?= $data['gaji_pokok'] ?></td>
         <td><?= $data['status_karyawan'] ?></td>
         <td><?= $data['bagian_id'] ?></td>
+        <td>
+          <a href="edit.php?id=<?= $data['nik'] ?>" class="btn bg-success" style="color: white;">Edit</a>
+          <a href="proses.php?id=<?= $data['nik'] ?>" class="btn bg-danger" style="color: white;">Hapus</a>
+        </td>
     </tr>
     <?php } ?>
   </tbody>
@@ -61,7 +67,7 @@ include '../../templates/navbar.php';
     include '../../templates/script.php';
     ?>
 
-    <?php
+    <?php 
     include '../../templates/script.php';
     ?>
     <!--end footer-->
